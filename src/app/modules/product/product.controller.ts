@@ -47,7 +47,7 @@ export const getProductById = async (req: Request, res: Response, next: NextFunc
   try {
     const product = await productService.getProductById(req.params.productId)
     if (!product) {
-      return res.status(404).json({
+      res.status(404).json({
         message: 'Product not found',
         success: false,
         error: 'Resource not found',
@@ -70,7 +70,7 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
     const validatedData = updateProductSchema.parse(req.body)
     const product = await productService.updateProduct(req.params.productId, validatedData)
     if (!product) {
-      return res.status(404).json({
+      res.status(404).json({
         message: 'Product not found',
         success: false,
         error: 'Resource not found',
@@ -101,7 +101,7 @@ export const deleteProduct = async (req: Request, res: Response, next: NextFunct
   try {
     const product = await productService.deleteProduct(req.params.productId)
     if (!product) {
-      return res.status(404).json({
+      res.status(404).json({
         message: 'Product not found',
         success: false,
         error: 'Resource not found',
