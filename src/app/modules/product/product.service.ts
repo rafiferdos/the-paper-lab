@@ -1,4 +1,3 @@
-// product.service.ts
 import Product from '../product.model'
 import { IProduct } from './product.interface'
 

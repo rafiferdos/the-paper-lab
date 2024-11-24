@@ -1,4 +1,3 @@
-// product.validation.ts
 import { z } from 'zod'
 import { Category } from './product.interface'
 

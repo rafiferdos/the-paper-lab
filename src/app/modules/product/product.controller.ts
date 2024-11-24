@@ -1,4 +1,3 @@
-// product.controller.ts
 import { Request, Response, NextFunction } from 'express'
 import { createProductSchema, updateProductSchema } from './product.validation'
 import { ZodError } from 'zod'
