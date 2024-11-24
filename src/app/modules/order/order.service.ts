@@ -2,7 +2,11 @@ import Order from '../order.model'
 import Product from '../product.model'
 import { IOrder } from './order.interface'
 
-export const createOrder = async (email: string, productId: string, quantity: number): Promise<IOrder> => {
+export const createOrder = async (
+  email: string,
+  productId: string,
+  quantity: number,
+): Promise<IOrder> => {
   const product = await Product.findById(productId)
   if (!product) {
     throw new Error('Product not found')

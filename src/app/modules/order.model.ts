@@ -37,7 +37,7 @@ const orderSchema: Schema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 )
 
 export default mongoose.model<IOrder>('Order', orderSchema)

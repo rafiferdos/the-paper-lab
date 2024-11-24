@@ -4,7 +4,11 @@ import Product from '../product.model'
 import { createOrderSchema } from './order.validation'
 import { ZodError } from 'zod'
 
-export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
+export const createOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const validatedData = createOrderSchema.parse(req.body)
     const { email, product: productId, quantity } = validatedData
@@ -66,7 +70,11 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
   }
 }
 
-export const calculateRevenue = async (req: Request, res: Response, next: NextFunction) => {
+export const calculateRevenue = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const revenue = await Order.aggregate([
       {

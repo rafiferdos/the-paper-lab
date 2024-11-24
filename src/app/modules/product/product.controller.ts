@@ -4,7 +4,11 @@ import { createProductSchema, updateProductSchema } from './product.validation'
 import { ZodError } from 'zod'
 import * as productService from './product.service'
 
-export const createProduct = async (req: Request, res: Response, next: NextFunction) => {
+export const createProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const validatedData = createProductSchema.parse(req.body)
     const product = await productService.createProduct(validatedData)
@@ -28,7 +32,11 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
   }
 }
 
-export const getAllProducts = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const searchTerm = req.query.searchTerm as string
     const products = await productService.getAllProducts(searchTerm)
@@ -43,7 +51,11 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
   }
 }
 
-export const getProductById = async (req: Request, res: Response, next: NextFunction) => {
+export const getProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const product = await productService.getProductById(req.params.productId)
     if (!product) {
@@ -65,10 +77,17 @@ export const getProductById = async (req: Request, res: Response, next: NextFunc
   }
 }
 
-export const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+export const updateProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const validatedData = updateProductSchema.parse(req.body)
-    const product = await productService.updateProduct(req.params.productId, validatedData)
+    const product = await productService.updateProduct(
+      req.params.productId,
+      validatedData,
+    )
     if (!product) {
       res.status(404).json({
         message: 'Product not found',
@@ -97,7 +116,11 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
   }
 }
 
-export const deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const product = await productService.deleteProduct(req.params.productId)
     if (!product) {

@@ -1,19 +1,19 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose'
 
 export enum Category {
-  Writing = "Writing",
-  OfficeSupplies = "Office Supplies",
-  ArtSupplies = "Art Supplies",
-  Educational = "Educational",
-  Technology = "Technology",
+  Writing = 'Writing',
+  OfficeSupplies = 'Office Supplies',
+  ArtSupplies = 'Art Supplies',
+  Educational = 'Educational',
+  Technology = 'Technology',
 }
 
 export interface IProduct extends Document {
-  name: string;
-  brand: string;
-  price: number;
-  category: Category;
-  description: string;
-  quantity: number;
-  inStock: boolean;
+  name: string
+  brand: string
+  price: number
+  category: Category
+  description: string
+  quantity: number
+  inStock: boolean
 }
