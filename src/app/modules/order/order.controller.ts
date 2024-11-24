@@ -14,7 +14,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
     if (!product) {
       res.status(404).json({
         message: 'Product not found',
-        success: false,
+        status: false,
         error: 'Resource not found',
         stack: new Error().stack,
       })
@@ -24,7 +24,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
     if (product.quantity < quantity) {
       res.status(400).json({
         message: 'Insufficient stock',
-        success: false,
+        status: false,
         error: 'Insufficient stock',
         stack: new Error().stack,
       })
@@ -49,14 +49,14 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 
     res.status(201).json({
       message: 'Order created successfully',
-      success: true,
+      status: true,
       data: order,
     })
   } catch (error) {
     if (error instanceof ZodError) {
       res.status(400).json({
         message: 'Validation failed',
-        success: false,
+        status: false,
         error: error.errors,
         stack: error.stack,
       })
@@ -79,7 +79,7 @@ export const calculateRevenue = async (req: Request, res: Response, next: NextFu
 
     res.status(200).json({
       message: 'Revenue calculated successfully',
-      success: true,
+      status: true,
       data: {
         totalRevenue: revenue[0]?.totalRevenue || 0,
       },

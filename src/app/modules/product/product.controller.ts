@@ -11,14 +11,14 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
 
     res.status(201).json({
       message: 'Product created successfully',
-      success: true,
+      status: true,
       data: product,
     })
   } catch (error) {
     if (error instanceof ZodError) {
       res.status(400).json({
         message: 'Validation failed',
-        success: false,
+        status: false,
         error: error.errors,
         stack: error.stack,
       })
@@ -35,7 +35,7 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
 
     res.status(200).json({
       message: 'Products retrieved successfully',
-      success: true,
+      status: true,
       data: products,
     })
   } catch (error) {
@@ -49,7 +49,7 @@ export const getProductById = async (req: Request, res: Response, next: NextFunc
     if (!product) {
       res.status(404).json({
         message: 'Product not found',
-        success: false,
+        status: false,
         error: 'Resource not found',
         stack: new Error().stack,
       })
@@ -57,7 +57,7 @@ export const getProductById = async (req: Request, res: Response, next: NextFunc
 
     res.status(200).json({
       message: 'Product retrieved successfully',
-      success: true,
+      status: true,
       data: product,
     })
   } catch (error) {
@@ -72,7 +72,7 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
     if (!product) {
       res.status(404).json({
         message: 'Product not found',
-        success: false,
+        status: false,
         error: 'Resource not found',
         stack: new Error().stack,
       })
@@ -80,14 +80,14 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
 
     res.status(200).json({
       message: 'Product updated successfully',
-      success: true,
+      status: true,
       data: product,
     })
   } catch (error) {
     if (error instanceof ZodError) {
       res.status(400).json({
         message: 'Validation failed',
-        success: false,
+        status: false,
         error: error.errors,
         stack: error.stack,
       })
@@ -103,7 +103,7 @@ export const deleteProduct = async (req: Request, res: Response, next: NextFunct
     if (!product) {
       res.status(404).json({
         message: 'Product not found',
-        success: false,
+        status: false,
         error: 'Resource not found',
         stack: new Error().stack,
       })
@@ -111,7 +111,7 @@ export const deleteProduct = async (req: Request, res: Response, next: NextFunct
 
     res.status(200).json({
       message: 'Product deleted successfully',
-      success: true,
+      status: true,
       data: {},
     })
   } catch (error) {
