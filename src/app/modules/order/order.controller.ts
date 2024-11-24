@@ -32,7 +32,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 
     const totalPrice = product.price * quantity
 
-    const order: IOrder = new Order({
+    const order = new Order({
       email,
       product: productId,
       quantity,
@@ -80,7 +80,9 @@ export const calculateRevenue = async (req: Request, res: Response, next: NextFu
     res.status(200).json({
       message: 'Revenue calculated successfully',
       success: true,
-      data: revenue[0]?.totalRevenue || 0,
+      data: {
+        totalRevenue: revenue[0]?.totalRevenue || 0,
+      },
     })
   } catch (error) {
     next(error)
