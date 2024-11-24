@@ -1,18 +1,22 @@
 import { Request, Response, NextFunction } from 'express'
-import Order from './../order.model'
-import Product from './../product.model'
+import Order from '../order.model'
+import Product from '../product.model'
 import { IOrder } from './order.interface'
+import { createOrderSchema } from './order.validation'
+import { ZodError } from 'zod'
 
 export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, product: productId, quantity } = req.body
+    const validatedData = createOrderSchema.parse(req.body)
+    const { email, product: productId, quantity } = validatedData
 
     const product = await Product.findById(productId)
     if (!product) {
       res.status(404).json({
         message: 'Product not found',
         success: false,
-        data: {},
+        error: 'Resource not found',
+        stack: new Error().stack,
       })
       return
     }
@@ -21,7 +25,8 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
       res.status(400).json({
         message: 'Insufficient stock',
         success: false,
-        data: {},
+        error: 'Insufficient stock',
+        stack: new Error().stack,
       })
     }
 
@@ -48,7 +53,16 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
       data: order,
     })
   } catch (error) {
-    next(error)
+    if (error instanceof ZodError) {
+      res.status(400).json({
+        message: 'Validation failed',
+        success: false,
+        error: error.errors,
+        stack: error.stack,
+      })
+    } else {
+      next(error)
+    }
   }
 }
 
