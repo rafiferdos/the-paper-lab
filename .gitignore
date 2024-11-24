@@ -4,3 +4,4 @@ coverage
 instructions.txt
 
 .env
+.vercel
