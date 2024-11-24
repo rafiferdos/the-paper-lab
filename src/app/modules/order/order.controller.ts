@@ -28,6 +28,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         error: 'Insufficient stock',
         stack: new Error().stack,
       })
+      return
     }
 
     const totalPrice = product.price * quantity
