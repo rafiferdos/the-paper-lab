@@ -4,7 +4,7 @@ A RESTful API backend service for a stationery shop e-commerce platform built wi
 
 ## 🌐 Live Demo
 
-API Base URL: [https://the-paper-lab.vercel.app/](https://the-paper-lab.vercel.app/)
+API Base URL: [https://the-paper-lab-v2.vercel.app/](https://the-paper-lab-v2.vercel.app/)
 
 ## ✨ Features
 
