@@ -16,5 +16,4 @@ app.get('/', function (req: Request, res: Response) {
   res.send('Hello World')
 })
 
-app.listen(3000)
 export default app
