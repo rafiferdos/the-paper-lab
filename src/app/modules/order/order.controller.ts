@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import Order from '../order.model'
 import Product from '../product.model'
-import { IOrder } from './order.interface'
 import { createOrderSchema } from './order.validation'
 import { ZodError } from 'zod'
 
